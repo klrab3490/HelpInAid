@@ -1,19 +1,23 @@
 "use client";
 import Image from 'next/image'
+import Link from 'next/link';
 import { useState } from 'react'
+import { useRouter } from 'next/navigation';
 
 const Home = () => {
+  const router = useRouter();
   const [error,setError] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async(e) => {
-    e.preventDefault();
-    try {
+    // e.preventDefault();
+    // try {
 
-    } catch (error)  {
-      setError(true);
-    }
+    // } catch (error)  {
+    //   setError(true);
+    // }
+    return <Link href={'/otp'}/>
   };
 
   return (
@@ -23,7 +27,7 @@ const Home = () => {
           <div className="signwith">
             <h3>Login</h3>
           </div>
-          <form onSubmit={handleLogin}>
+          <form>
             <div>
               <h3 className='mr-1'>Email : </h3>
               <input type="email" placeholder='Email' onChange={e => setEmail(e.target.value)} />
@@ -33,7 +37,10 @@ const Home = () => {
               <input type="password" placeholder='Password' onChange={e => setPassword(e.target.value)} />
             </div>
             <div className='gap-2'>
-              <button type='submit' className='bg-blue-600 text-white'> Login </button>
+              <Link href={"/otp"}>
+
+              <button type='submit' className='bg-blue-600 text-white' > Login </button>
+              </Link>
             </div>
             {error && <span>Wrong Email Or Password</span>}
           </form>
